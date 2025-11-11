@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:proj/components/auth_field.dart';
 import 'package:proj/components/default_page.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class Register extends StatelessWidget {
+  Register({super.key});
 
   final GlobalKey<FormState> authKey = GlobalKey<FormState>();
   final TextEditingController name = TextEditingController();
@@ -13,23 +13,20 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultPage(
-      title: "Sign Up", 
+      title: "Sign Up",
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: EdgeInsets.all(24.0),
         child: Form(
           key: authKey,
           child: Column(
             children: [
-              
-              AuthField(
-                label: "Full Name",
-                controller: name,
-              ),
+              AuthField(label: "Full Name", controller: name),
               const SizedBox(height: 16),
               AuthField(
                 label: "Phone Number",
                 controller: phoneNumber,
                 prefix: "+962",
+                regex: r'^\d{9}$',
               ),
               const SizedBox(height: 16),
               AuthField(
@@ -37,19 +34,22 @@ class SignUpPage extends StatelessWidget {
                 controller: password,
                 isPassword: true,
               ),
-              const SizedBox(height: 24),
-
+              SizedBox(height: 24),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () => {
+                  if (authKey.currentState!.validate())
+                    Navigator.pushReplacementNamed(context, "home"),
                 },
-                child: const Text("Sign Up"),
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 48),
                 ),
+                child: Text("Sign Up"),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               TextButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.pushReplacementNamed(context, "login"),
+                },
                 child: const Text("Already have an account? Log In"),
               ),
             ],

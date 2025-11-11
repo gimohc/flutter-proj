@@ -29,6 +29,7 @@ class Login extends StatelessWidget {
                   label: "Phone Number",
                   controller: phoneNumber,
                   prefix: "+962",
+                  regex: r'^\d{9}$',
                 ),
                 const SizedBox(height: 16),
                 AuthField(
@@ -38,11 +39,28 @@ class Login extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (authKey.currentState!.validate()) {
+                      Navigator.pushReplacementNamed(context, "home");
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 48),
                   ),
                   child: const Text("Log In"),
+                ),
+                TextButton(
+                  onPressed: () => {
+                    Navigator.pushNamed(context, "forgotPassword"),
+                  },
+                  child: Text("Forgot password?"),
+                ),
+
+                TextButton(
+                  child: Text("Don't have an account? Sign up"),
+                  onPressed: () => {
+                    Navigator.pushReplacementNamed(context, "register"),
+                  },
                 ),
               ],
             ),
