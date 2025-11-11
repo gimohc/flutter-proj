@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proj/pages/forgot_password.dart';
+import 'package:proj/pages/home.dart';
+import 'package:proj/pages/login.dart';
+import 'package:proj/pages/register.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,12 +13,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      routes: {
+        "home": (context) => Home(),
+        "login": (context) => Login(),
+        "register": (context) => Register(),
+        "forgotPassword": (context) => ForgotPassword(),
+      },
+      home: const Login(),
     );
   }
 }
