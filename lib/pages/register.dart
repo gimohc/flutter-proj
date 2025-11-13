@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:proj/components/auth_field.dart';
+import 'package:proj/components/auth/auth_button.dart';
+import 'package:proj/components/auth/auth_field.dart';
+import 'package:proj/components/auth/google_auth.dart';
 import 'package:proj/components/default_page.dart';
 
 class Register extends StatelessWidget {
@@ -13,39 +15,35 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultPage(
-      title: "Sign Up",
+      title: "Create an account!",
       child: Padding(
         padding: EdgeInsets.all(24.0),
         child: Form(
           key: authKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               AuthField(label: "Full Name", controller: name),
-              const SizedBox(height: 16),
               AuthField(
                 label: "Phone Number",
                 controller: phoneNumber,
                 prefix: "+962",
                 regex: r'^\d{9}$',
               ),
-              const SizedBox(height: 16),
               AuthField(
                 label: "Password",
                 controller: password,
                 isPassword: true,
               ),
               SizedBox(height: 24),
-              ElevatedButton(
+              AuthButton(
+                text: "Sign Up",
                 onPressed: () => {
                   if (authKey.currentState!.validate())
                     Navigator.pushReplacementNamed(context, "home"),
                 },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 48),
-                ),
-                child: Text("Sign Up"),
               ),
-              SizedBox(height: 16),
+              GoogleAuth(),
               TextButton(
                 onPressed: () => {
                   Navigator.pushReplacementNamed(context, "login"),
