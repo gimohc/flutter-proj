@@ -5,14 +5,14 @@ import 'package:proj/components/auth/google_auth.dart';
 import 'package:proj/components/default_page.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  final GlobalKey<FormState> authKey = GlobalKey();
+  final TextEditingController phoneNumber = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
+  Login({super.key});
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<FormState> authKey = GlobalKey();
-    final TextEditingController phoneNumber = TextEditingController();
-    final TextEditingController password = TextEditingController();
-
     return DefaultPage(
       title: "Welcome back!",
       child: Padding(
@@ -33,25 +33,26 @@ class Login extends StatelessWidget {
                 controller: password,
                 isPassword: true,
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               AuthButton(
                 text: "Log In",
-                onPressed: () => {
-                  if (authKey.currentState!.validate())
-                    {Navigator.pushReplacementNamed(context, "home")},
+                onPressed: () {
+                  if (authKey.currentState!.validate()) {
+                    Navigator.pushReplacementNamed(context, "home");
+                  }
                 },
               ),
-              GoogleAuth(),
+              const GoogleAuth(),
               TextButton(
-                onPressed: () => {
-                  Navigator.pushNamed(context, "forgotPassword"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "forgotPassword");
                 },
                 child: Text("Forgot password?"),
               ),
               TextButton(
                 child: Text("Don't have an account? Sign up"),
-                onPressed: () => {
-                  Navigator.pushReplacementNamed(context, "register"),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "register");
                 },
               ),
             ],

@@ -6,13 +6,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        scaffoldBackgroundColor: Colors.grey[100],
-      ),
-      home: DefaultPage(title: "Home", showProfile: true, child: Container()),
-    );
+    return DefaultPage(title: "Home", showProfile: true, child: Container());
   }
 }
