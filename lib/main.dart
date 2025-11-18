@@ -22,7 +22,7 @@ class MainApp extends StatelessWidget {
         "register": (context) => Register(),
         "forgotPassword": (context) => ForgotPassword(),
       },
-      home: const Login(),
+      home: Login(),
     );
   }
 }
