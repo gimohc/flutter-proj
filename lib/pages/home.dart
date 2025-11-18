@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
         primarySwatch: Colors.teal,
         scaffoldBackgroundColor: Colors.grey[100],
       ),
-      home: DefaultPage(title: "Home", child: Container()),
+      home: DefaultPage(title: "Home", showProfile: true, child: Container()),
     );
   }
 }
