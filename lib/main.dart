@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proj/pages/forgot_password.dart';
 import 'package:proj/pages/home.dart';
 import 'package:proj/pages/login.dart';
+import 'package:proj/pages/profile.dart';
 import 'package:proj/pages/register.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         "home": (context) => Home(),
+        "profile": (context) => Profile(),
         "login": (context) => Login(),
         "register": (context) => Register(),
         "forgotPassword": (context) => ForgotPassword(),
