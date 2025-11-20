@@ -8,7 +8,7 @@ class GoogleAuth extends StatelessWidget {
     return Padding(
       padding: EdgeInsetsGeometry.only(bottom: 20),
       child: ElevatedButton(
-        onPressed: () => {},
+        onPressed: () => {Navigator.of(context).pushReplacementNamed("home")},
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
