@@ -7,6 +7,8 @@ class AuthField extends StatelessWidget {
   final String? regexMessage;
   final String? prefix;
   final String label;
+  final bool optional;
+  final bool enabled;
 
   const AuthField({
     super.key,
@@ -14,6 +16,8 @@ class AuthField extends StatelessWidget {
     this.regex,
     this.regexMessage,
     this.prefix,
+    this.optional = false,
+    this.enabled = true,
     required this.label,
     required this.controller,
   });
@@ -23,6 +27,7 @@ class AuthField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: TextFormField(
+        enabled: enabled,
         obscureText: isPassword ?? false,
         controller: controller,
         decoration: InputDecoration(
@@ -43,10 +48,10 @@ class AuthField extends StatelessWidget {
           ),
         ),
         validator: (value) {
-          if (value == null || value.isEmpty) {
+          if (!optional && (value == null || value.isEmpty)) {
             return 'This field is required';
           }
-          if (regex != null) {
+          if (value != null && value.isNotEmpty && regex != null) {
             final regExp = RegExp(regex!);
             if (!regExp.hasMatch(value)) {
               return regexMessage ?? 'Invalid format';
