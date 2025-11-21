@@ -21,13 +21,26 @@ class AuthField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.only(bottom: 16),
+      padding: const EdgeInsets.only(bottom: 16),
       child: TextFormField(
         obscureText: isPassword ?? false,
         controller: controller,
         decoration: InputDecoration(
-          prefix: (prefix != null) ? Text(prefix!) : null,
-          label: Text(label),
+          prefixText: (prefix != null) ? "$prefix " : null,
+          labelText: label,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.cyan, width: 2),
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 16,
+          ),
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {

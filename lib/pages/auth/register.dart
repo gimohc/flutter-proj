@@ -3,26 +3,50 @@ import 'package:proj/components/auth/auth_button.dart';
 import 'package:proj/components/auth/auth_field.dart';
 import 'package:proj/components/auth/google_auth.dart';
 import 'package:proj/components/default_page.dart';
+import 'package:proj/components/headline.dart';
+import 'package:proj/components/logo.dart';
 
-class Register extends StatelessWidget {
-  Register({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
   final GlobalKey<FormState> authKey = GlobalKey<FormState>();
-  final TextEditingController name = TextEditingController();
-  final TextEditingController phoneNumber = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  late final TextEditingController name;
+  late final TextEditingController phoneNumber;
+  late final TextEditingController password;
+
+  @override
+  void initState() {
+    super.initState();
+    name = TextEditingController();
+    phoneNumber = TextEditingController();
+    password = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    name.dispose();
+    phoneNumber.dispose();
+    password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultPage(
-      title: "Create an account!",
       child: Padding(
-        padding: EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24.0),
         child: Form(
           key: authKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
             children: [
+              const Logo(),
+              const Center(child: Headline("Register")),
+
               AuthField(label: "Full Name", controller: name),
               AuthField(
                 label: "Phone Number",
@@ -35,18 +59,23 @@ class Register extends StatelessWidget {
                 controller: password,
                 isPassword: true,
               ),
-              SizedBox(height: 24),
+
+              const SizedBox(height: 24),
+
               AuthButton(
                 text: "Sign Up",
-                onPressed: () => {
-                  if (authKey.currentState!.validate())
-                    Navigator.pushReplacementNamed(context, "home"),
+                onPressed: () {
+                  if (authKey.currentState!.validate()) {
+                    Navigator.pushReplacementNamed(context, "home");
+                  }
                 },
               ),
-              GoogleAuth(),
+
+              const GoogleAuth(),
+
               TextButton(
-                onPressed: () => {
-                  Navigator.pushReplacementNamed(context, "login"),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "login");
                 },
                 child: const Text("Already have an account? Log In"),
               ),

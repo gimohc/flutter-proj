@@ -3,25 +3,47 @@ import 'package:proj/components/auth/auth_button.dart';
 import 'package:proj/components/auth/auth_field.dart';
 import 'package:proj/components/auth/google_auth.dart';
 import 'package:proj/components/default_page.dart';
+import 'package:proj/components/headline.dart';
+import 'package:proj/components/logo.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   final GlobalKey<FormState> authKey = GlobalKey();
-  final TextEditingController phoneNumber = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  late final TextEditingController phoneNumber;
+  late final TextEditingController password;
 
-  Login({super.key});
+  @override
+  void initState() {
+    super.initState();
+    phoneNumber = TextEditingController();
+    password = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    phoneNumber.dispose();
+    password.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultPage(
-      title: "Welcome back!",
       child: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Form(
           key: authKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
             children: [
+              const Logo(),
+              const Center(child: Headline("Welcome Back!")),
+
               AuthField(
                 label: "Phone Number",
                 controller: phoneNumber,
@@ -33,7 +55,19 @@ class Login extends StatelessWidget {
                 controller: password,
                 isPassword: true,
               ),
+
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "forgotPassword");
+                  },
+                  child: const Text("Forgot password?"),
+                ),
+              ),
+
               const SizedBox(height: 24),
+
               AuthButton(
                 text: "Log In",
                 onPressed: () {
@@ -42,15 +76,11 @@ class Login extends StatelessWidget {
                   }
                 },
               ),
+
               const GoogleAuth(),
+
               TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "forgotPassword");
-                },
-                child: Text("Forgot password?"),
-              ),
-              TextButton(
-                child: Text("Don't have an account? Sign up"),
+                child: const Text("Don't have an account? Sign up"),
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, "register");
                 },
