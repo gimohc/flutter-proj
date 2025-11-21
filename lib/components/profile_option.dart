@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ProfileOption extends StatelessWidget {
-  final Icon? icon;
+  final Widget? icon;
   final String text;
   final String? route;
   final VoidCallback? onTap;
