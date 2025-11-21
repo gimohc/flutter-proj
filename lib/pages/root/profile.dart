@@ -35,12 +35,17 @@ class Profile extends StatelessWidget {
               route: "wallet",
             ),
             const ProfileOption(
+              text: "Your Cars",
+              icon: Icon(Icons.electric_car),
+              route: "cars",
+            ),
+            const ProfileOption(
               icon: Icon(Icons.dark_mode),
               text: "Change Theme",
             ),
             const ProfileOption(
               icon: Icon(Icons.language),
-              text: "Change language",
+              text: "Change Language",
             ),
           ]),
 
@@ -50,9 +55,14 @@ class Profile extends StatelessWidget {
               text: "Help Center",
               route: "help",
             ),
-            const ProfileOption(
-              icon: Icon(Icons.place),
-              text: "About this application",
+            ProfileOption(
+              icon: Image.asset(
+                "assets/images/logo_transparent.png",
+                width: 24,
+                height: 24,
+                color: Colors.grey[600],
+              ),
+              text: "About This Application",
               route: "about",
             ),
             const ProfileOption(icon: Icon(Icons.star), text: "Rate the app"),
@@ -65,11 +75,7 @@ class Profile extends StatelessWidget {
   Widget _buildSection(String title, List<Widget> options) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ProfileText(title),
-        ...options,
-        const SizedBox(height: 16),
-      ],
+      children: [ProfileText(title), ...options, const SizedBox(height: 16)],
     );
   }
 }
