@@ -9,7 +9,6 @@ import 'package:proj/pages/root/home.dart';
 import 'package:proj/pages/auth/login.dart';
 import 'package:proj/pages/root/profile.dart';
 import 'package:proj/pages/auth/register.dart';
-import 'package:proj/pages/root/reserve.dart';
 import 'package:proj/pages/support/about.dart';
 import 'package:proj/pages/support/help.dart';
 
@@ -37,7 +36,6 @@ class MainApp extends StatelessWidget {
         "history": (context) => History(),
         "addresses": (context) => Addresses(),
         "cars": (context) => Cars(),
-        "reserve": (context) => Reserve(),
       },
       home: Login(),
     );
